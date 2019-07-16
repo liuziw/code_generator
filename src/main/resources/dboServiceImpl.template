@@ -1,0 +1,32 @@
+package ${packageName}.service.dbo.impl;
+
+import com.hyzs.gz.common.dao.service.impl.DOServiceImpl;
+import ${packageName}.daomanager.${javaClassName}DaoManager;
+import ${packageName}.dbo.${javaClassName}DO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ${packageName}.service.dbo.${javaClassName}DOService;
+import com.hyzs.gz.common.dao.manager.DOChecker;
+
+import javax.annotation.PostConstruct;
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+@Service
+public class ${javaClassName}DOServiceImpl extends DOServiceImpl<${javaClassName}DO,${primaryKey.type}> implements ${javaClassName}DOService{
+
+     @Autowired
+     private ${javaClassName}DaoManager ${javaFieldName}DaoManager;
+
+
+     @Autowired(required=false)
+     private DOChecker doChecker;
+
+
+     @PostConstruct
+     public void init(){
+        super.setDoChecker(this.doChecker);
+        super.setCommonDaoManager(${javaFieldName}DaoManager);
+     }
+}

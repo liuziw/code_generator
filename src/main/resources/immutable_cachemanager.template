@@ -1,0 +1,22 @@
+package ${packageName}.daomanager.immutable;
+
+import ${packageName}.dbo.${javaClassName}DO;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.function.Function;
+import java.util.Date;
+import com.hyzs.common.cache.manager.CommonCacheManager;
+import java.util.stream.Collectors;
+import org.springframework.util.CollectionUtils;
+
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+public interface Immutable${javaClassName}CacheManager extends CommonCacheManager<${javaClassName}DO,${primaryKey.type}> {
+
+
+
+}

@@ -1,0 +1,11 @@
+package ${packageName}.daomanager;
+
+import ${packageName}.daomanager.immutable.Immutable${javaClassName}CacheManager;
+
+/**
+
+    这里扩展方法
+*/
+public interface ${javaClassName}CacheManager extends  Immutable${javaClassName}CacheManager{
+
+}

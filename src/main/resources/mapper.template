@@ -1,0 +1,122 @@
+package ${packageName}.mapper;
+import ${packageName}.dbo.${javaClassName}DO;
+import com.hyzs.gz.common.dao.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Mapper;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Date;
+import java.util.HashMap;
+import org.springframework.util.CollectionUtils;
+import org.apache.ibatis.annotations.Param;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import org.apache.ibatis.annotations.MapKey;
+import com.hyzs.gz.common.dao.dto.QueryItemDTO;
+
+
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+@Mapper
+public interface ${javaClassName}Mapper extends CommonMapper<${javaClassName}DO,${primaryKey.type}>{
+
+
+        public ${javaClassName}DO getBy${primaryKey.javaClassName}(@Param("${primaryKey.javaFieldName}") ${primaryKey.type}  ${primaryKey.javaFieldName},@Param("fieldNames") String ... fieldNames);
+
+    <#if primaryKeyName !=  "id">
+        /**
+         *主键字段名不为id，重新定义有MapKey("id")的方法
+         *
+         *
+         */
+
+         /**
+          * 获取所有,以Map的形式返回，Key为主键。注意大表时千万别调用 select * from tab where is_deleted=0
+          * @return
+          */
+         @MapKey("${primaryKey.javaFieldName}")
+         public Map<${primaryKey.type},${javaClassName}DO> mapAll();
+
+         @MapKey("${primaryKey.javaFieldName}")
+         Map<${primaryKey.type},${javaClassName}DO> mapByIds(@Param("ids") Collection<${primaryKey.type}> ids, @Param("fieldNames") String[] fieldNames);
+
+
+         @MapKey("${primaryKey.javaFieldName}")
+         Map<${primaryKey.type},${javaClassName}DO> mapByProperty(@Param("propertyName") String propertyName, @Param("value") Object value, @Param("fieldNames") String[] fieldNames);
+
+         @MapKey("${primaryKey.javaFieldName}")
+         Map<${primaryKey.type},${javaClassName}DO> mapByProperties(@Param("propertyNames") String[] propertyNames, @Param("values") Object[] values, @Param("fieldNames") String[] fieldNames);
+
+
+
+        @MapKey("${primaryKey.javaFieldName}")
+         Map<${primaryKey.type},${javaClassName}DO> _mapByQueryItems(@Param("items") List<QueryItemDTO> items, @Param("values") Object values, @Param("fieldNames") String[] fieldNames);
+
+
+
+         /******************************************************************************************************************/
+
+    </#if>
+
+
+    <#list businessFields as field>
+        public List<${javaClassName}DO> listBy${field.javaClassName}(@Param("${field.javaFieldName}") ${field.type} ${field.javaFieldName},@Param("fieldNames") String[] fieldNames);
+
+        @MapKey("${primaryKey.javaFieldName}")
+        public Map<${primaryKey.type},${javaClassName}DO> mapBy${field.javaClassName}(@Param("${field.javaFieldName}") ${field.type} ${field.javaFieldName},@Param("fieldNames") String[] fieldNames);
+
+        public Integer countBy${field.javaClassName}(@Param("${field.javaFieldName}") ${field.type} ${field.javaFieldName});
+
+        public default ${javaClassName}DO singleResultBy${field.javaClassName}(${field.type} ${field.javaFieldName},String[] fieldNames){
+             List<${javaClassName}DO> list=this.listBy${field.javaClassName}(${field.javaFieldName},fieldNames);
+             return CollectionUtils.isEmpty(list)?null:list.get(0);
+        }
+
+         public default <T> Map<T,List<${javaClassName}DO>> groupingBy${field.javaClassName}(${field.type} ${field.javaFieldName}, Function<${javaClassName}DO, T> mapper, String[] fieldNames){
+             List<${javaClassName}DO> list=this.listBy${field.javaClassName}(${field.javaFieldName},fieldNames);
+             if(CollectionUtils.isEmpty(list)){
+                return new HashMap<>();
+             }
+             return list.stream().collect(Collectors.groupingBy(mapper));
+         }
+
+        public Integer updateNotNullFieldsBy${field.javaClassName}(@Param("updateDO") ${javaClassName}DO updateDO, @Param("${field.javaFieldName}") ${field.type} ${field.javaFieldName});
+
+        public Integer updateAllFieldsBy${field.javaClassName}(@Param("updateDO") ${javaClassName}DO updateDO, @Param("${field.javaFieldName}") ${field.type} ${field.javaFieldName});
+
+        public Integer deleteBy${field.javaClassName}( @Param("${field.javaFieldName}") ${field.type} ${field.javaFieldName});
+
+
+
+
+        public List<${javaClassName}DO> listByIn${field.javaClassName}(@Param("${field.javaFieldName}List") Collection<${field.type}> ${field.javaFieldName}List,@Param("fieldNames") String[] fieldNames);
+
+        @MapKey("${primaryKey.javaFieldName}")
+        public Map<${primaryKey.type},${javaClassName}DO> mapByIn${field.javaClassName}(@Param("${field.javaFieldName}List") Collection<${field.type}> ${field.javaFieldName}List,@Param("fieldNames") String[] fieldNames);
+
+        public Integer countByIn${field.javaClassName}(@Param("${field.javaFieldName}List") Collection<${field.type}> ${field.javaFieldName}List);
+
+        public default ${javaClassName}DO singleResultByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List,String[] fieldNames){
+             List<${javaClassName}DO> list=this.listByIn${field.javaClassName}(${field.javaFieldName}List,fieldNames);
+             return CollectionUtils.isEmpty(list)?null:list.get(0);
+        }
+
+         public default <T> Map<T,List<${javaClassName}DO>> groupingByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List, Function<${javaClassName}DO, T> mapper, String[] fieldNames){
+             List<${javaClassName}DO> list=this.listByIn${field.javaClassName}(${field.javaFieldName}List,fieldNames);
+             if(CollectionUtils.isEmpty(list)){
+                return new HashMap<>();
+             }
+             return list.stream().collect(Collectors.groupingBy(mapper));
+         }
+
+        public Integer updateNotNullFieldsByIn${field.javaClassName}(@Param("updateDO") ${javaClassName}DO updateDO, @Param("${field.javaFieldName}List") Collection<${field.type}> ${field.javaFieldName}List);
+
+        public Integer updateAllFieldsByIn${field.javaClassName}(@Param("updateDO") ${javaClassName}DO updateDO, @Param("${field.javaFieldName}List") Collection<${field.type}> ${field.javaFieldName}List);
+
+        public Integer deleteByIn${field.javaClassName}( @Param("${field.javaFieldName}List") Collection<${field.type}> ${field.javaFieldName}List);
+
+    </#list>
+
+}

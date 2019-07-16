@@ -1,0 +1,22 @@
+package ${packageName}.daomanager.impl;
+
+import ${packageName}.daomanager.${javaClassName}CacheManager;
+import ${packageName}.dbo.${javaClassName}DO;
+import ${packageName}.daomanager.immutable.impl.Immutable${javaClassName}CacheManagerImpl;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+
+    这里扩展方法
+*/
+@Component
+public class ${javaClassName}CacheManagerImpl extends  Immutable${javaClassName}CacheManagerImpl implements ${javaClassName}CacheManager{
+
+
+
+}

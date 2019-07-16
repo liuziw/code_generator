@@ -1,0 +1,22 @@
+package ${packageName}.daomanager.impl;
+
+import ${packageName}.daomanager.${javaClassName}DaoManager;
+import ${packageName}.dbo.${javaClassName}DO;
+import ${packageName}.daomanager.immutable.impl.Immutable${javaClassName}DaoManagerImpl;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
+import ${packageName}.mapper.${javaClassName}Mapper;
+import ${packageName}.dao.${javaClassName}Dao;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Component
+public class ${javaClassName}DaoManagerImpl extends  Immutable${javaClassName}DaoManagerImpl implements ${javaClassName}DaoManager{
+
+
+    @Autowired
+    private ${javaClassName}Dao ${javaFieldName}Dao;
+
+}

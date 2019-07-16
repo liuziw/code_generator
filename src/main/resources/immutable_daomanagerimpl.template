@@ -1,0 +1,142 @@
+package ${packageName}.daomanager.immutable.impl;
+
+import ${packageName}.dbo.${javaClassName}DO;
+import com.hyzs.gz.common.dao.manager.DOChecker;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.function.Function;
+import java.util.Date;
+import com.hyzs.gz.common.dao.daomanager.CommonDaoManager;
+import java.util.stream.Collectors;
+import org.springframework.util.CollectionUtils;
+import ${packageName}.daomanager.immutable.Immutable${javaClassName}DaoManager;
+import com.hyzs.gz.common.dao.daomanager.impl.CommonDaoManagerImpl;
+import ${packageName}.mapper.${javaClassName}Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+public class Immutable${javaClassName}DaoManagerImpl extends CommonDaoManagerImpl<${javaClassName}DO,${primaryKey.type}> implements Immutable${javaClassName}DaoManager {
+
+        @Autowired
+        private ${javaClassName}Mapper ${javaFieldName}Mapper;
+
+
+
+
+        @PostConstruct
+        private void init(){
+           super.setCommonMapper(${javaFieldName}Mapper);
+
+            Map<String,String> fieldMap=new HashMap<>();
+            <#list fields as field>
+            fieldMap.put(${javaClassName}DO.${field.fieldName?upper_case},${javaClassName}DO.DB_${field.fieldName?upper_case});
+            fieldMap.put(${javaClassName}DO.DB_${field.fieldName?upper_case},${javaClassName}DO.DB_${field.fieldName?upper_case});
+
+            </#list>
+
+
+            super.setFieldNameMap(fieldMap);
+        }
+
+
+        /**
+         * 根据主键获取记录
+         *
+         */
+        public ${javaClassName}DO getBy${primaryKey.javaClassName}(${primaryKey.type} ${primaryKey.javaFieldName}){
+            return this.${javaFieldName}Mapper.getBy${primaryKey.javaClassName}(${primaryKey.javaFieldName});
+        }
+
+    <#list businessFields as field>
+
+
+        public List<${javaClassName}DO> listBy${field.javaClassName}(${field.type} ${field.javaFieldName}, String... fieldNames){
+            return this.${javaFieldName}Mapper.listBy${field.javaClassName}(${field.javaFieldName},super.javaFieldNames2DataBaseNames(fieldNames));
+        }
+
+        public Map<${primaryKey.type},${javaClassName}DO> mapBy${field.javaClassName}(${field.type} ${field.javaFieldName}, String... fieldNames){
+            return this.${javaFieldName}Mapper.mapBy${field.javaClassName}(${field.javaFieldName},super.javaFieldNames2DataBaseNames(fieldNames));
+        }
+
+        public Integer countBy${field.javaClassName}(${field.type} ${field.javaFieldName}){
+            return this.${javaFieldName}Mapper.countBy${field.javaClassName}(${field.javaFieldName});
+        }
+
+        public Integer updateNotNullFieldsBy${field.javaClassName}(${javaClassName}DO updateDO, ${field.type} ${field.javaFieldName}){
+            if (super.doChecker != null){
+                super.doChecker.checkWhenModify(updateDO);
+            }
+            return this.${javaFieldName}Mapper.updateNotNullFieldsBy${field.javaClassName}(updateDO,${field.javaFieldName});
+        }
+
+        public Integer updateAllFieldsBy${field.javaClassName}(${javaClassName}DO updateDO,  ${field.type} ${field.javaFieldName}){
+            if (super.doChecker != null){
+                super.doChecker.checkWhenModify(updateDO);
+            }
+            return this.${javaFieldName}Mapper.updateAllFieldsBy${field.javaClassName}(updateDO,${field.javaFieldName});
+        }
+
+        public Integer deleteBy${field.javaClassName}( ${field.type} ${field.javaFieldName}){
+            return this.${javaFieldName}Mapper.deleteBy${field.javaClassName}(${field.javaFieldName});
+        }
+
+
+
+        public List<${javaClassName}DO> listByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List, String... fieldNames){
+            if(CollectionUtils.isEmpty(${field.javaFieldName}List)){
+                return new ArrayList<>(0);
+            }
+            return this.${javaFieldName}Mapper.listByIn${field.javaClassName}(${field.javaFieldName}List,super.javaFieldNames2DataBaseNames(fieldNames));
+        }
+
+        public Map<${primaryKey.type},${javaClassName}DO> mapByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List, String... fieldNames){
+            if(CollectionUtils.isEmpty(${field.javaFieldName}List)){
+                 return new HashMap<>();
+            }
+            return this.${javaFieldName}Mapper.mapByIn${field.javaClassName}(${field.javaFieldName}List,super.javaFieldNames2DataBaseNames(fieldNames));
+        }
+
+        public Integer countByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List){
+            if(CollectionUtils.isEmpty(${field.javaFieldName}List)){
+                   return 0;
+             }
+            return this.${javaFieldName}Mapper.countByIn${field.javaClassName}(${field.javaFieldName}List);
+        }
+
+        public Integer updateNotNullFieldsByIn${field.javaClassName}(${javaClassName}DO updateDO, Collection<${field.type}> ${field.javaFieldName}List){
+            if(CollectionUtils.isEmpty(${field.javaFieldName}List)){
+                  return 0;
+             }
+            if(super.doChecker != null){
+                super.doChecker.checkWhenModify(updateDO);
+            }
+            return this.${javaFieldName}Mapper.updateNotNullFieldsByIn${field.javaClassName}(updateDO,${field.javaFieldName}List);
+        }
+
+        public Integer updateAllFieldsByIn${field.javaClassName}(${javaClassName}DO updateDO,  Collection<${field.type}> ${field.javaFieldName}List){
+            if(CollectionUtils.isEmpty(${field.javaFieldName}List)){
+                           return 0;
+             }
+            if(super.doChecker != null){
+                super.doChecker.checkWhenModify(updateDO);
+            }
+            return this.${javaFieldName}Mapper.updateAllFieldsByIn${field.javaClassName}(updateDO,${field.javaFieldName}List);
+        }
+
+        public Integer deleteByIn${field.javaClassName}( Collection<${field.type}> ${field.javaFieldName}List){
+            if(CollectionUtils.isEmpty(${field.javaFieldName}List)){
+                           return 0;
+             }
+            return this.${javaFieldName}Mapper.deleteByIn${field.javaClassName}(${field.javaFieldName}List);
+        }
+    </#list>
+
+
+}

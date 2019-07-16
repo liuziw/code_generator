@@ -1,0 +1,14 @@
+package ${packageName}.daomanager.impl;
+
+import com.hyzs.common.redis.dao.impl.CommonRedisDaoImpl;
+import ${packageName}.dbo.${javaClassName}DO;
+import org.springframework.stereotype.Component;
+
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+@Component
+public class ${javaClassName}RedisDao extends  CommonRedisDaoImpl<${javaClassName}DO,${primaryKey.type}>{
+
+}

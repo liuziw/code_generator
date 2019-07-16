@@ -1,0 +1,12 @@
+package ${packageName}.service.dbo;
+
+
+import com.hyzs.gz.common.dao.service.DOService;
+import ${packageName}.dbo.${javaClassName}DO;
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+public interface ${javaClassName}DOService extends DOService<${javaClassName}DO,Long>{
+
+}

@@ -1,0 +1,33 @@
+package ${packageName}.web.controller.dbo;
+
+
+import com.hyzs.gz.common.dao.web.controller.DOController;
+import ${packageName}.dbo.${javaClassName}DO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.PostConstruct;
+
+import ${packageName}.service.dbo.${javaClassName}DOService;
+
+import io.swagger.annotations.Api;
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+@RestController
+@RequestMapping(value = "/api/v1.0/dbo${javaClassName}",method = RequestMethod.POST)
+@Api(value="DBO${javaClassName}DOController",description = "${dataBaseName}表对应的基本操作,自动生成的代码，包含增删改查操作")
+public class DBO${javaClassName}Controller extends DOController<${javaClassName}DO,${primaryKey.type}>{
+
+    @Autowired
+    private ${javaClassName}DOService ${javaFieldName}DOService;
+
+    @PostConstruct
+    public void init(){
+        super.setDoService(${javaFieldName}DOService);
+    }
+
+}

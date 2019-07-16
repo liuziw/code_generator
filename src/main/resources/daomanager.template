@@ -1,0 +1,8 @@
+package ${packageName}.daomanager;
+
+import ${packageName}.daomanager.immutable.Immutable${javaClassName}DaoManager;
+
+
+public interface ${javaClassName}DaoManager extends  Immutable${javaClassName}DaoManager{
+
+}

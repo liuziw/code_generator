@@ -1,0 +1,57 @@
+package ${packageName}.enums;
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+public enum ${javaClassName}Enum {
+
+
+    <#list items as item>
+     ${item.itemName}(${item.stringCode},"${item.itemDesc}")<#if item_has_next>,</#if><#if !item_has_next>;</#if>
+    </#list>
+
+
+     public final ${fieldType} code;
+
+     public final String desc;
+
+
+     private ${javaClassName}Enum(${fieldType} code,String desc)
+     {
+        this.code=code;
+        this.desc=desc;
+     }
+
+
+    public final ${fieldType} getCode()
+    {
+        return this.code;
+    }
+
+    public final String getDesc()
+    {
+        return this.desc;
+    }
+
+
+    public static ${javaClassName}Enum valueOfByCode(${fieldType} code)
+    {
+
+        if(code==null)
+        {
+            return null;
+        }
+        <#list items as item>
+
+        //${item.itemDesc}
+        if(code.equals(${item.stringCode}))
+        {
+            return ${item.itemName};
+        }
+        </#list>
+
+         return null;
+    }
+
+
+}

@@ -1,0 +1,49 @@
+package ${packageName}.dbo;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+@Data
+public class ${javaClassName}DO implements java.io.Serializable  {
+
+
+    private static final long serialVersionUID = 1L;
+
+
+    //表名
+    public static final String TABLE_NAME="${dataBaseName}";
+
+
+
+
+    //定义字段常量
+<#list fields as field>
+    /**
+     *${field.fieldDesc}
+     *${field.javaFieldName}
+     */
+    public static final String  ${field.fieldName?upper_case}="${field.javaFieldName}";
+
+    /**
+     *${field.fieldDesc}
+     *${field.fieldName}
+     */
+    public static final String  DB_${field.fieldName?upper_case}="${field.fieldName}";
+
+</#list>
+
+<#list fields as field>
+
+
+    /**
+     *${field.fieldDesc}
+     */
+    @ApiModelProperty(value = "${field.fieldDesc}")
+    private ${field.type.fieldType} ${field.javaFieldName};
+</#list>
+}

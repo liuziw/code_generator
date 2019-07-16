@@ -1,0 +1,85 @@
+package ${packageName}.daomanager.immutable;
+
+import ${packageName}.dbo.${javaClassName}DO;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.function.Function;
+import java.util.Date;
+import com.hyzs.gz.common.dao.daomanager.CommonDaoManager;
+import java.util.stream.Collectors;
+import org.springframework.util.CollectionUtils;
+
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+public interface Immutable${javaClassName}DaoManager extends CommonDaoManager<${javaClassName}DO,${primaryKey.type}> {
+
+
+        /**
+         * 根据主键获取记录
+         *
+         */
+        public ${javaClassName}DO getBy${primaryKey.javaClassName}(${primaryKey.type} ${primaryKey.javaFieldName});
+
+    <#list businessFields as field>
+        public List<${javaClassName}DO> listBy${field.javaClassName}(${field.type} ${field.javaFieldName}, String... fieldNames);
+
+        public Map<${primaryKey.type},${javaClassName}DO> mapBy${field.javaClassName}(${field.type} ${field.javaFieldName}, String... fieldNames);
+
+        public Integer countBy${field.javaClassName}(${field.type} ${field.javaFieldName});
+
+        public default ${javaClassName}DO singleResultBy${field.javaClassName}(${field.type} ${field.javaFieldName},String... fieldNames){
+             List<${javaClassName}DO> list=this.listBy${field.javaClassName}(${field.javaFieldName},fieldNames);
+             return CollectionUtils.isEmpty(list)?null:list.get(0);
+        }
+
+         public default <T> Map<T,List<${javaClassName}DO>> groupingBy${field.javaClassName}(${field.type} ${field.javaFieldName}, Function<${javaClassName}DO, T> mapper, String... fieldNames){
+             List<${javaClassName}DO> list=this.listBy${field.javaClassName}(${field.javaFieldName},fieldNames);
+             if(CollectionUtils.isEmpty(list)){
+                return new HashMap<>();
+             }
+             return list.stream().collect(Collectors.groupingBy(mapper));
+         }
+
+        public Integer updateNotNullFieldsBy${field.javaClassName}(${javaClassName}DO updateDO, ${field.type} ${field.javaFieldName});
+
+        public Integer updateAllFieldsBy${field.javaClassName}(${javaClassName}DO updateDO,  ${field.type} ${field.javaFieldName});
+
+        public Integer deleteBy${field.javaClassName}( ${field.type} ${field.javaFieldName});
+
+
+
+
+
+
+        public List<${javaClassName}DO> listByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List, String... fieldNames);
+
+         public Map<${primaryKey.type},${javaClassName}DO> mapByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List, String... fieldNames);
+
+         public Integer countByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List);
+
+         public default ${javaClassName}DO singleResultByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List,String... fieldNames){
+              List<${javaClassName}DO> list=this.listByIn${field.javaClassName}(${field.javaFieldName}List,fieldNames);
+              return CollectionUtils.isEmpty(list)?null:list.get(0);
+         }
+
+          public default <T> Map<T,List<${javaClassName}DO>> groupingByIn${field.javaClassName}(Collection<${field.type}> ${field.javaFieldName}List, Function<${javaClassName}DO, T> mapper, String... fieldNames){
+              List<${javaClassName}DO> list=this.listByIn${field.javaClassName}(${field.javaFieldName}List,fieldNames);
+              if(CollectionUtils.isEmpty(list)){
+                 return new HashMap<>();
+              }
+              return list.stream().collect(Collectors.groupingBy(mapper));
+          }
+
+         public Integer updateNotNullFieldsByIn${field.javaClassName}(${javaClassName}DO updateDO, Collection<${field.type}> ${field.javaFieldName}List);
+
+         public Integer updateAllFieldsByIn${field.javaClassName}(${javaClassName}DO updateDO,  Collection<${field.type}> ${field.javaFieldName}List);
+
+         public Integer deleteByIn${field.javaClassName}( Collection<${field.type}> ${field.javaFieldName}List);
+    </#list>
+
+
+}

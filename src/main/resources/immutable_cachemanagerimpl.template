@@ -1,0 +1,33 @@
+package ${packageName}.daomanager.immutable.impl;
+
+import ${packageName}.daomanager.${javaClassName}DaoManager;
+import ${packageName}.daomanager.impl.${javaClassName}RedisDao;
+import ${packageName}.dbo.${javaClassName}DO;
+import javax.annotation.PostConstruct;
+import ${packageName}.daomanager.immutable.Immutable${javaClassName}CacheManager;
+import com.hyzs.common.cache.manager.impl.CommonCacheManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * 代码自动生成，请不要修改，切记！！！
+ */
+public class Immutable${javaClassName}CacheManagerImpl extends CommonCacheManagerImpl<${javaClassName}DO,${primaryKey.type}> implements Immutable${javaClassName}CacheManager {
+
+    @Override
+    public Class<${javaClassName}DO> getEntityClass() {
+        return ${javaClassName}DO.class;
+    }
+
+    @Autowired
+    private ${javaClassName}DaoManager daoManager;
+
+    @Autowired
+    private ${javaClassName}RedisDao redisDao;
+
+    @PostConstruct
+    public void init(){
+        super.setCommonDaoManager(daoManager);
+        super.setCommonRedisDao(redisDao);
+    }
+
+}
