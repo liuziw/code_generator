@@ -15,4 +15,5 @@ public class EnumBO extends NameBO {
     private List<EnumItemBO> items;
 
     private FieldTypeEnum fieldType;
+
 }
