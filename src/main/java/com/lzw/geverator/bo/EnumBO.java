@@ -1,4 +1,4 @@
-package com.lzw.geverator;
+package com.lzw.geverator.bo;
 
 import com.lzw.geverator.enums.FieldTypeEnum;
 import lombok.Data;

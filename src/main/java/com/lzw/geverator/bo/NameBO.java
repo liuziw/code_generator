@@ -1,4 +1,4 @@
-package com.lzw.geverator;
+package com.lzw.geverator.bo;
 
 
 import lombok.Data;
